@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+
+	<session-factory>
+		<mapping class="com.file.handler.bean.FileUploadBean" />
+		<mapping class="com.elecnor.ecosystem.bean.JobUploadDocument" />
+		<mapping class="com.elecnor.ecosystem.bean.States" />
+		<mapping class="com.elecnor.ecosystem.bean.ItemDB" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationInvoice" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationPlanDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationUserMapping" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationUserRole" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetCode" />
+		<mapping class="com.elecnor.ecosystem.bean.CustomerDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.ContractorDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.DepartmentType" />
+		<mapping class="com.elecnor.ecosystem.bean.DocumentCenter" />
+		<mapping class="com.elecnor.ecosystem.bean.DomainApplicationPlanMapping" />
+		<mapping
+			class="com.elecnor.ecosystem.bean.DomainApplicationPlanMappingTracking" />
+		<mapping class="com.elecnor.ecosystem.bean.DomainDetail" />
+		<mapping class="com.elecnor.ecosystem.bean.ItemDB" />
+		<mapping class="com.elecnor.ecosystem.bean.ProjectType" />
+		<!-- <mapping class="com.elecnor.ecosystem.bean.TemporarySignupDetail" 
+			/> -->
+		<mapping class="com.elecnor.ecosystem.bean.UserDetail" />
+		<mapping class="com.elecnor.ecosystem.bean.JobDetail" />
+		<mapping class="com.elecnor.ecosystem.bean.VendorDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.LicenseDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.ApplicationInvoicePlanMapping" />
+		<mapping class="com.elecnor.ecosystem.bean.CompanyCalendar" />
+		<mapping class="com.elecnor.ecosystem.bean.AddressDetails" />
+		<!-- <mapping class="com.elecnor.ecosystem.bean.LogDetails"/> -->
+		<!-- <mapping class="com.elecnor.ecosystem.bean.EmailNotificationDetails" 
+			/> -->
+		<mapping class="com.elecnor.ecosystem.bean.NotificationCenterBean" />
+
+		<!-- <mapping class="com.elecnor.ecosystem.bean.EmailLogDetails"/> -->
+		<mapping class="com.elecnor.ecosystem.bean.CouponDetails" />
+		<mapping class="com.elecnor.ecosystem.bean.UserRoles" />
+		<mapping class="com.elecnor.ecosystem.bean.UserRolesMapping" />
+		<mapping class="com.elecnor.ecosystem.bean.DepartmentUserMapping" />
+
+		<!-- Mapping classes for RFC and Budget Form Tables -->
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormDje" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormEquip" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormIndirect" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormLabor" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormMat" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormProjectAdmin" />
+		<mapping class="com.elecnor.ecosystem.bean.BudgetFormSubContractor" />
+		<mapping class="com.elecnor.ecosystem.bean.RfcLog" />
+		<mapping class="com.elecnor.ecosystem.bean.RfcLogTracking" />
+		<mapping class="com.elecnor.ecosystem.bean.RfcSubCostTypeBean" />
+		<mapping class="com.elecnor.ecosystem.bean.RfcTakeoffSheet" />
+
+		<!-- Sov Mapping -->
+		<mapping class="com.elecnor.ecosystem.bean.SovDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.SovTable" />
+		<mapping class="com.elecnor.ecosystem.bean.SovTableTracking" />
+		<mapping class="com.elecnor.ecosystem.bean.SovReviewsTable" />
+		<mapping class="com.elecnor.ecosystem.bean.SovCommentsTable" />
+		<mapping class="com.elecnor.ecosystem.bean.UnitAbbreviationDirectory" />
+
+		<!-- Temporary User Account to view specific pages -->
+		<mapping class="com.elecnor.ecosystem.bean.TemporaryUserDetail" />
+		<mapping class="com.elecnor.ecosystem.bean.ModuleDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.SubModuleDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.RoleViewMapping" />
+		<mapping class="com.elecnor.ecosystem.bean.TemporaryUserViewMapping" />
+
+		<!-- mapping of the new beans of user modules -->
+		<mapping class="com.elecnor.ecosystem.bean.DepartmentDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.DepartmentHierarchyDetails" />
+		<mapping class="com.elecnor.ecosystem.bean.DesignationDirectory" />
+		<mapping class="com.elecnor.ecosystem.bean.DesignationHierarchyDetails" />
+		<mapping class="com.elecnor.ecosystem.bean.OrganizationDirectory" />
+
+		<!-- Email Handler Log bean -->
+		<mapping class="com.email.utility.bean.EmailNotificationBean" />
+		<mapping class="com.email.utility.bean.EmailAttachmentBean" />
+	</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,285 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*** common ***/
+body{
+	font-family: 'Open Sans', sans-serif !important;
+}
+a{
+	color:#ff6600 !important;
+}
+.horiz-30{
+	margin:0 30px;
+}
+.horiz-20{
+	margin:0 20px;
+}
+.horiz-10{
+	margin:0 10px;
+}
+.line-40{
+	line-height:40px;
+}
+.vert-20{
+	margin:20px 0 !important;
+}
+.pad-left0{
+	padding-left:0 !important;
+}
+.pad-20{
+	padding:20px;
+}
+
+/*** header ****/
+.eco_header{
+	padding:20px 0;
+	margin:0;
+	background:#f4f4f4;
+}
+.main_logo{
+	padding:0;
+	margin:0;
+	width:188px;
+	height:30px;
+	background:url(report_track.jpg) no-repeat top left;
+	text-indent:-999px;
+}
+.nav-btn{
+	margin-top:4px !important;
+}
+.nav-pills li.active a{
+	background:#ccc !important;
+}
+
+.jumbotron img{
+	width:100%;
+}
+
+/**** titles *****/
+.title1{
+	padding:50px 0 15px 0;
+	margin:0 0 30px 0;
+	text-align:center;
+	font-size:40px;
+	font-weight:300;
+	border-bottom:1px solid #ccc;
+}
+.main_caption{
+	font-weight:300;
+	color:#ff6600 !important;
+	line-height:85px;
+}
+.title2{
+	font-size:30px;
+	font-weight:300;
+	color:#ff6600;
+}
+.product-titles{
+	padding:0;
+	margin:0;
+}
+.product-titles li{
+	padding:0 20px;
+	margin:0;
+	float:left;
+	list-style:none;
+	border-right:1px solid #ccc;
+}
+.product-titles li a{
+	font-size:40px;
+	font-weight:300;
+	color:#999 !important;
+	text-decoration:none;
+}
+.product-titles li.active a{
+	color:#ff6600 !important;
+	cursor:default;
+	text-decoration:none;  
+}
+.tyupo1{
+	font-size:18px;
+	font-weight:300;
+}		
+/*** buttons ****/
+.btn{
+	background:#ff6600 !important;
+	color:#fff !important;
+	border:none;
+}
+.btn:hover{
+	background:#dd5c06 !important;
+}
+
+/**** container****/	
+
+.prdct-crcl{
+	background:#ff6600;
+	padding:0;
+	margin:20px auto;
+	border-radius:200px;
+	width:150px;
+	height:150px;
+	display:table;
+	-moz-box-shadow: 3px 3px 2px rgba(0,0,0,0.4);
+-webkit-box-shadow: 3px 3px 2px rgba(0,0,0,0.4);
+box-shadow: 3px 3px 2px rgba(0,0,0,0.4);
+}
+.prdct-crcl p{
+	display:table-cell;
+	vertical-align:middle;
+}
+.prdct-lst span{
+	background:url(../images/ext-link.png) no-repeat left top;
+	padding:0 0 0 20px;
+	margin:0 0 0px 0;
+}
+.prdct-btn{
+	margin-top:10px;
+}
+.gray-testi{
+	background:#f1f1f1;
+	border-left:1px solid #fff;
+	padding:20px;
+}
+.gray-testi img{
+	border:5px solid #999;
+	border-radius:100px;
+	margin:0 20px 0 0;
+}
+.gray-testi p{
+	font-style:italic;
+	color:#666;
+}
+/*** product page ***/
+.subnav{
+	padding:0;
+	margin:0;
+	position:relative;
+	background:#fff;
+}
+.fixed{
+	position: fixed; 
+	top: 0; 
+	z-index: 100;
+	width:1170px;
+	background:#fff;
+}
+
+.subscroll-nav{
+	background:#333333;
+	border:none;
+	border-radius:0;
+}
+.subscroll-nav ul{
+	padding:0;
+	margin:0;
+}
+.subscroll-nav ul li{
+	list-style:none;
+	padding:0 0;
+	float:left;
+}
+.subscroll-nav ul li a{
+	color:#fff !important;
+	padding: 15px 30px;
+	display: block;
+	text-decoration:none;
+}
+.subscroll-nav ul li a:hover{
+	background:#000 !important;
+}
+.subscroll-nav ul li.active a{
+	background:#ff6600 !important;
+	color:#333 !important;
+}
+.gototop{
+	background:#ff6600;
+	padding:16px;
+	color:#333 !important;
+	font-size:18px;
+}
+.sub-points{
+	padding:0;
+	margin:0;
+}
+.sub-points li{
+	list-style:none;
+	margin:10px 0;
+	padding:0;
+}
+.sub-points li img{
+	margin:0 10px 0 0;
+}
+.feature{
+	padding:0;
+	margin:0 0 20px 0;
+}
+.pricingbox{
+	padding:0;
+	margin:0;
+}
+.pricingbox h1{
+	padding:50px;
+	font-size:60px;
+	color:#333 !important;
+}
+.pricingbox .ribon{
+	background:#333;
+	padding:10px;
+	display:block;
+	color:#fff;
+	text-transform:uppercase;
+}
+.pricingbox .ribon p{
+	font-size:18px;
+	padding:0;
+	margin:0;
+}
+.pricingbox ul{
+	padding:0;
+	margin:0;
+}
+.pricingbox ul li{
+	padding:10px 0;
+	margin:0;
+	list-style:none outside;
+	border-bottom:1px dotted #ccc;
+}
+.highlight-price{
+	border:1px solid #ff6600;
+}
+.highlight-price .ribon{
+	background:#ff6600;
+}
+.abt-banner{
+	padding:0;
+	margin:0;
+	background:url(../images/chart.png) no-repeat right bottom;
+}
+.profile-img{
+	border:7px solid #ccc;
+	border-radius:100px;
+	width:150px;
+}
+
+/**** contcat page ****/
+.input-cont{
+	border:1px solid #ccc;
+	box-shadow:none;
+}
+.map-icn{
+	font-size:40px;
+	color:#666;
+}
+
+
+footer{
+	border-top:1px solid #ff6600;
+	margin:40px 0 0 0;
+	padding:20px 0;
+}
+footer p{
+	color:#999;
+	font-size:12px;
+}
+	

@@ -1,0 +1,194 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		 http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+	<context:annotation-config />
+
+	<cache:annotation-driven />
+	<context:component-scan base-package="com.elecnor.ecosystem" />
+
+	<mvc:resources mapping="/assets/img/**" location="/assets/img/" />
+	<mvc:resources mapping="/assets/js/**" location="/assets/js/" />
+	<mvc:resources mapping="/assets/css/**" location="/assets/css/" />
+	<mvc:resources mapping="/assets/fonts/**" location="/assets/fonts/" />
+	<mvc:resources mapping="/assets/less/**" location="/assets/less/" />
+	<mvc:resources mapping="/assets/scss/**" location="/assets/scss/" />
+	<mvc:annotation-driven />
+
+	<!-- also add the following beans to get rid of some exceptions -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<!-- uncomment this only if you are using the Spring Exception Handling.. -->
+	<!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> <props> <prop key="java.lang.Exception">error</prop> 
+		<prop key="<Your Generic Exception Class>">GenericExceptionPage</prop> </props> 
+		</property> </bean> -->
+
+	<bean id="urlviewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1"></property>
+	</bean>
+
+	<!-- Adding Interceptor For Session Checks -->
+	<!-- <mvc:interceptors> <bean class="com.elecnor.ecosystem.interceptor.EcosystemInterceptor" 
+		/> </mvc:interceptors> -->
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="0"></property>
+	</bean>
+	<!-- this bean for upload a file -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="15728640" />
+	</bean>
+	<!-- This required only if you are using a property file to display the 
+		Message Or Field Label -->
+	<!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> 
+		<property name="basename" value="classpath:messages" /> <property name="defaultEncoding" 
+		value="UTF-8" /> </bean> -->
+
+	<!-- This is to define your Property file which will have your JDBC properties. 
+		(This file needs to be in your classpath) -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="classpath:${ENV_MODE}.application.properties" />
+
+	<!-- Using C3PO connection pooling, It can also be handled by Hibernate. 
+		(Its recommend to use the connection pooling for production environment.) -->
+
+	<!-- <bean class="com.elecnor.ecosystem.bean.NotificationCenterBean" /> -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"
+		p:jdbcUrl="${app.jdbc.databaseurl}" p:user="${app.jdbc.username}"
+		p:password="${app.jdbc.password}" p:minPoolSize="${c3po.minPoolSize}"
+		p:maxPoolSize="${c3po.maxPoolSize}" p:numHelperThreads="${c3po.numHelperThreads}"
+		p:preferredTestQuery="${c3po.preferredTestQuery}"
+		p:idleConnectionTestPeriod="${c3po.idleConnectionTestPeriod}" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<!-- <property name="configurationClass"> <value>org.hibernate.cfg.Configuration</value> 
+			</property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${app.jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- Set below two properties to true for debug -->
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<!-- <prop key="hibernate.connection.autoReconnect">true</prop> <prop 
+					key="connection.autoReconnectForPools">true</prop> <prop key="connection.is-connection-validation-required">true</prop> 
+					<prop key="hibernate.c3p0.minPoolSize">5</prop> <prop key="hibernate.c3p0.maxPoolSize">100</prop> 
+					<prop key="hibernate.c3p0.timeout">1800</prop> <prop key="hibernate.c3p0.max_statement">55</prop> 
+					<prop key="hibernate.c3p0.idle_test_period">2000</prop> <prop key="hibernate.c3p0.numHelperThreads">20</prop> 
+					<prop key="hibernate.hbm2ddl.auto">update</prop> -->
+			</props>
+		</property>
+	</bean>
+	<!-- cache manager -->
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="rowsValidate" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Setting up ResourceBundle for Internationalization & Localization ,By 
+		Vaibhav Dixit. -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:message" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+
+	<!-- Changing it to the default handler mapping , By Vaibhav -->
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+	
+	<!-- Start configuration of File Handler Utility -->
+	<import resource="classpath:/upload-servlet.xml" />
+	<!-- End configuration of File Handler Utility -->
+
+	<!-- <bean class="com.elecnor.ecosystem.bean.NotificationCenterBean" /> -->
+
+	<!-- <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"> 
+		<property name="interceptors"> <ref bean="localeChangeInterceptor" /> </property> 
+		</bean> -->
+
+	<!-- End -->
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="500" />
+	</bean>
+	
+	<!-- Setting Bean JobSetupProcessor -->
+	<bean id="jobSetUpProcessor1" class="com.elecnor.ecosystem.job.processor.JobSetupProcessor">
+		<constructor-arg ref = "taskExecutor" />
+	</bean>
+	
+	<!-- Start configuration of Email Utility -->
+	<!-- <bean id="emailHandlerService"
+		class="com.email.utility.serviceimpl.EmailNotificationServiceImpl">
+	</bean>
+	<bean id="emailHandlerDao" class="com.email.utility.daoimpl.EmailNotificationDaoImpl">
+	</bean> -->
+	<!-- <bean id="emailSender" class="com.email.utility.util.EmailSender"> 
+		</bean> -->
+
+	<import resource="classpath:/email-util-servlet.xml" />
+	<bean id="emailHandlerThread" class="com.email.utility.executor.EmailTaskExecutor">
+		<constructor-arg ref="taskExecutor" />
+	</bean>
+	<!-- End configuration of Email Utility -->
+
+</beans>
